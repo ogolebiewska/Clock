@@ -1,2 +1,1 @@
-import myFunc from "./script";
-myFunc();
+import "./style.scss";
