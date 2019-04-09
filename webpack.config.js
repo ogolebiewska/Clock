@@ -14,44 +14,46 @@ module.exports = {
     })],
     module: {
         rules: [{
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: [['@babel/preset-env', {
+                        "useBuiltIns": "entry"
+                    }]]
                 }
-
-            },
-            {
-                test: /\.css/,
-                use: ["style-loader", "css-loader"]
-            },
-            {
-                test: /\.s(a|c)ss$/,
-                use: [isProduction ? MiniCssExtractPlugin.loader : {
-                    loader: 'style-loader',
-                    options: {
-                        sourceMap: true
-                    }
-                }, {
-                    loader: 'css-loader',
-                    options: {
-                        sourceMap: isProduction
-                    }
-                }, {
-                    loader: 'postcss-loader',
-                    options: {
-                        sourceMap: isProduction
-                    }
-                }, {
-                    loader: 'sass-loader',
-                    options: {
-                        sourceMap: isProduction
-                    }
-                }]
             }
+
+        },
+        {
+            test: /\.css/,
+            use: ["style-loader", "css-loader"]
+        },
+        {
+            test: /\.s(a|c)ss$/,
+            use: [isProduction ? MiniCssExtractPlugin.loader : {
+                loader: 'style-loader',
+                options: {
+                    sourceMap: true
+                }
+            }, {
+                loader: 'css-loader',
+                options: {
+                    sourceMap: isProduction
+                }
+            }, {
+                loader: 'postcss-loader',
+                options: {
+                    sourceMap: isProduction
+                }
+            }, {
+                loader: 'sass-loader',
+                options: {
+                    sourceMap: isProduction
+                }
+            }]
+        }
         ]
     }
 };
